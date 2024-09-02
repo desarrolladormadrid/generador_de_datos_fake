@@ -1,0 +1,155 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Luis Generador </title>
+</head>
+<body>
+  <h1>Luis - Generador de datos</h1>
+
+  <style>
+/* Restablecer estilos */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Cuerpo */
+
+body {
+    height: 100vh;
+    padding-top: 200px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Encabezado */
+
+h1 {
+  text-align: center;
+}
+
+/* Formulario */
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+input[type="button"] {
+    margin-bottom: 30px;
+    margin-top: 20px;
+  padding: 5px 10px;
+  background-color: #008CBA;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Resultado */
+
+#resultado {
+  width: 50%;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+  </style>
+
+  <form>
+    <input type="button" value="Generar datos" onclick="generarDatos()">
+  </form>
+
+  <div id="resultado"></div>
+
+  <script>
+    generarDatos();
+// Función para generar datos aleatorios
+// Función para generar datos aleatorios
+// Función para generar datos aleatorios
+function generarDatos() {
+  // Generar un número aleatorio para el DNI
+  var dni = Math.floor(Math.random() * 99999999) + 1;
+  // Generar una letra aleatoria para el DNI
+  var letras = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"];
+  var letra = letras[dni % 23];
+  // Generar un nombre aleatorio
+  var nombres = ["TEST Juan", "TEST María", "TEST Pedro", "TEST Ana", "TEST José", "TEST Isabel", "TEST Luis", "TEST Rosa", "TEST Manuel", "TEST Carmen"];
+  var nombre = nombres[Math.floor(Math.random() * nombres.length)];
+  // Generar un apellido aleatorio
+  var apellidos = ["García", "López", "Sánchez", "Martínez", "Fernández", "González", "Rodríguez", "Alonso", "Pérez", "Díaz"];
+  var apellido = apellidos[Math.floor(Math.random() * apellidos.length)];
+  // Generar un número de cuenta bancaria aleatorio
+  var cuentaBancaria = generarCuentaBancaria();
+  // Generar un IBAN aleatorio
+  var iban = "ES" + cuentaBancaria;
+  // seguridad social
+  var ss=generarNumeroSeguridadSocial();
+  // Generar una dirección aleatoria
+  var provincias = ["Madrid"];
+  var provincia = provincias[Math.floor(Math.random() * provincias.length)];
+  var ciudades = ["Madrid", "Alcalá de Henares", "Alcobendas", "Alcorcón", "Aranjuez", "Arganda del Rey", "Boadilla del Monte", "Collado Villalba", "Coslada", "Fuenlabrada", "Getafe", "Guadalajara", "Humanes de Madrid", "Leganés", "Majadahonda", "Manzanares el Real", "Móstoles", "Parla", "Pinto", "Pozuelo de Alarcón", "Rivas-Vaciamadrid", "San Fernando de Henares", "San Sebastián de los Reyes", "Torrelodones", "Tres Cantos", "Valdemoro", "Villaviciosa de Odón"]
+  var ciudad = ciudades[Math.floor(Math.random() * ciudades.length)];
+  // Generar un correo electrónico aleatorio
+  var email = Math.random().toString(36).substring(2, 15) + "@" + Math.random().toString(36).substring(2, 15) + ".com";
+  // Generar un número de teléfono aleatorio
+  var telefono = Math.floor(Math.random() * 999999999) + 1;
+  // Generar un código postal aleatorio
+  var codigoPostal = Math.floor(Math.random() * 99999) + 1;
+  // Mostrar los datos generados
+  var resultado = "DNI: " + dni + letra + "<br>";
+  resultado += "Nombre: " + nombre + "<br>";
+  resultado += "Apellido: " + apellido + "<br>";
+  resultado += "Cuenta bancaria: " + iban + "<br>";
+  resultado += "Provincia: " + provincia + "<br>";
+  resultado += "Ciudad: " + ciudad + "<br>";
+  resultado += "Email: " + email + "<br>";
+  resultado += "Teléfono: " + telefono + "<br>";
+  resultado += "Código postal: " + codigoPostal+"<br>";
+  resultado += "Seguridad Social: " + ss +"<br>";
+  document.getElementById("resultado").innerHTML = resultado;
+}
+
+// Función para generar un número de cuenta bancaria aleatorio
+function generarCuentaBancaria() {
+  // Generar un número aleatorio para el número de cuenta
+  var numeroCuenta = Math.floor(Math.random() * 9999999999999999) + 1;
+  // Generar un número aleatorio para el código de control
+  var codigoControl = Math.floor(Math.random() * 9999) + 1;
+  // Generar el número de cuenta completo
+  var cuentaBancaria = "ES" + numeroCuenta + "-" + codigoControl;
+  // Devolver el número de cuenta completo
+  return cuentaBancaria;
+}
+// Función para generar un número de cuenta bancaria aleatorio
+function generarCuentaBancaria() {
+  // Generar un número aleatorio para el número de cuenta
+  var numeroCuenta = Math.floor(Math.random() * 9999999999999999) + 1;
+  // Generar un número aleatorio para el código de control
+  var codigoControl = Math.floor(Math.random() * 9999) + 1;
+  // Generar el número de cuenta completo
+  var cuentaBancaria = numeroCuenta + "-" + codigoControl;
+  // Devolver el número de cuenta completo
+  return cuentaBancaria;
+}
+
+function generarNumeroSeguridadSocial() {
+  var provincia = Math.floor(Math.random() * 99).toString().padStart(2, '0');
+  var secuencial = Math.floor(Math.random() * 99999999).toString().padStart(8, '0');
+  var numeroCompleto = provincia + secuencial;
+  var resto = parseInt(numeroCompleto) % 97;
+  var digitosControl = resto.toString().padStart(2, '0');
+  var numeroSeguridadSocial = provincia + secuencial + digitosControl;
+  return numeroSeguridadSocial;
+}
+  </script>
+  </script>
+</body>
+</html>
